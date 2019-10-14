@@ -32,3 +32,5 @@ def infixToPostfix(infixexpr):
 
 print(infixToPostfix("A * B + C * D"))
 print(infixToPostfix("( A + B ) * C - ( D - E ) * ( F + G )"))
+
+(34534+A)*(3423+B)
