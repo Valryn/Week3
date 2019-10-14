@@ -8,6 +8,21 @@ class DoubleLinkedCircle:
     def __init__(self):
         self.__head = None
 
+    def __str__(self):
+        return self.head
+
+    def __iter__(self):
+        self.iterNode = self.head
+        self.firstpass = True
+        return self
+
+    def __next__(self):
+        if self.iterNode is self.head and not self.firstpass:
+            raise StopIteration
+        self.firstpass = False
+        self.iterNode = self.iterNode.next
+        return self.iterNode.previous
+
     def isEmpty(self):
         return self.head is None
 
@@ -85,6 +100,9 @@ class Node:
         self.next = None
         self.previous = None
 
+    def __str__(self):
+        return self.contents
+
     @property
     def contents(self):
         return self.__contents
@@ -118,17 +136,15 @@ myCircleList.append("you?")
 print(myCircleList.size())
 node = myCircleList.head
 myMessage = ""
-for i in range(myCircleList.size()):
-    myMessage = myMessage + node.contents
-    node = node.next
+for node in myCircleList:
+    myMessage = myMessage + str(node)
 print(myMessage)
 
 myCircleList2 = DoubleLinkedCircle()
 myCircleList2.append("Hey!")
 print(myCircleList2.size())
-print(myCircleList2.head.contents)
+print(myCircleList2.head)
 
 myCircleList3 = DoubleLinkedCircle()
 print(myCircleList3.size())
-
-
+print(myCircleList3.head)
